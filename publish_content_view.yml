@@ -1,0 +1,17 @@
+---
+- name: Publish a satellite content view
+  hosts: all
+  gather_facts: false
+  vars_files: satellite_connection_credentials.yml
+  tasks:
+    - name: Publish a content view
+      redhat.satellite.content_view_version:
+        username: "{{ satellite_management_username }}"
+        password: "{{ satellite_management_password }}"
+        server_url: "{{ satellite_management_server_url }}"
+        content_view: "{{ item }}"
+        organization: "{{ satellite_management_org_name }}"
+        lifecycle_environments:
+          - Library
+        description: Published on {{ lookup('pipe', 'date') }}
+      loop: "{{ satellite_management_cv_name }}"

@@ -1,0 +1,4 @@
+/artifacts
+ansible.cfg
+ansible-navigator.log
+/satellite_ee/context

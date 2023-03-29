@@ -1,0 +1,13 @@
+---
+- name: Clean up old satellite content content_views
+  hosts: satellite
+  gather_facts: false
+  vars_files: satellite_connection_credentials.yml
+  roles:
+    - role: redhat.satellite.content_view_version_cleanup
+      vars:
+        satellite_username: "{{ satellite_management_username }}"
+        satellite_password: "{{ satellite_management_password }}"
+        satellite_server_url: "{{ satellite_management_server_url }}"
+        satellite_organization: "{{ satellite_management_org_name }}"
+        satellite_content_view_version_cleanup_keep: "{{ satellite_management_cv_keep }}"

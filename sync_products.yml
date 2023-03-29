@@ -1,0 +1,15 @@
+---
+- name: Sync a satellite repository
+  hosts: all
+  gather_facts: false
+  vars_files: satellite_connection_credentials.yml
+  tasks:
+    - name: Synchronize a Satellite repository
+      redhat.satellite.repository_sync:
+        username: "{{ satellite_management_username }}"
+        password: "{{ satellite_management_password }}"
+        server_url: "{{ satellite_management_server_url }}"
+        organization: "{{ satellite_management_org_name }}"
+        product: "{{ item }}"
+        validate_certs: false
+      loop: "{{ satellite_management_product }}"
