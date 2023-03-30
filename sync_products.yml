@@ -1,6 +1,6 @@
 ---
 - name: Sync a satellite repository
-  hosts: all
+  hosts: satellite
   gather_facts: false
   vars_files: satellite_connection_credentials.yml
   tasks:
